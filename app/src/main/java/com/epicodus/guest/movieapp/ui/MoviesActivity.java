@@ -3,11 +3,14 @@ package com.epicodus.guest.movieapp.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.epicodus.guest.movieapp.R;
+import com.epicodus.guest.movieapp.adapters.MovieListAdapter;
 import com.epicodus.guest.movieapp.models.Movie;
 import com.epicodus.guest.movieapp.services.MovieService;
 
@@ -23,7 +26,8 @@ import okhttp3.Response;
 public class MoviesActivity extends AppCompatActivity {
     public ArrayList<Movie> mMovies = new ArrayList<>();
     public static final String TAG = MoviesActivity.class.getSimpleName();
-    @Bind(R.id.movieListView) ListView mMovieListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private MovieListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +56,13 @@ public class MoviesActivity extends AppCompatActivity {
                 MoviesActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        String[] movieTitles = new String[mMovies.size()];
-                        for (int i = 0; i < movieTitles.length; i++) {
-                            movieTitles[i] = mMovies.get(i).getMovieName();
+                        mAdapter = new MovieListAdapter(getApplicationContext(), mMovies);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(MoviesActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
                         }
-                        ArrayAdapter adapter = new ArrayAdapter(MoviesActivity.this, android.R.layout.simple_list_item_1, movieTitles);
-                        mMovieListView.setAdapter(adapter);
-
-                        for (Movie movie : mMovies) {
-                            Log.d(TAG, "Name: " + movie.getMovieName());
-                            Log.d(TAG, "Rating: " + movie.getmVoteAverage());
-                            Log.d(TAG, "Release Date: " + movie.getmReleaseDate());
-                        }
-                    }
                 });
             }
         });
