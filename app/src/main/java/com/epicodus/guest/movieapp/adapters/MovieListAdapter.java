@@ -2,17 +2,17 @@ package com.epicodus.guest.movieapp.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epicodus.guest.movieapp.R;
 import com.epicodus.guest.movieapp.models.Movie;
+import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -53,7 +53,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             @Bind(R.id.movieNameTextView) TextView mMovieNameTextView;
             @Bind(R.id.ratingTextView) TextView mRatingTextView;
             @Bind(R.id.releaseTextView) TextView mReleaseTextView;
+            @Bind(R.id.posterImageView) ImageView mPosterImageView;
             private Context mContext;
+            private static final int MAX_WIDTH = 400;
+            private static final int MAX_HEIGHT = 300;
 
             public MovieViewHolder(View itemView) {
                 super(itemView);
@@ -62,6 +65,12 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             }
 
             public void bindMovie(Movie movie) {
+                Log.v("poster", movie.getPosterPath());
+
+                Picasso.with(mContext).load(movie.getPosterPath())
+                        .resize(MAX_WIDTH, MAX_HEIGHT)
+                        .centerCrop()
+                        .into(mPosterImageView);
                 mMovieNameTextView.setText(movie.getMovieName());
                 mReleaseTextView.setText(movie.getmReleaseDate());
                 mRatingTextView.setText("Rating: " + movie.getmVoteAverage() + "/10");

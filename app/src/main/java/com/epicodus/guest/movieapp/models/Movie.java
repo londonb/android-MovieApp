@@ -10,16 +10,18 @@ public class Movie {
     public String mMovieName;
     public double mVoteAverage; //RATING
     public String mReleaseDate;
+    public String mPosterPath;
 
 
     public Movie() {
 
     }
 
-    public Movie(String movieName, double voteAverage, String releaseDate) {
+    public Movie(String movieName, double voteAverage, String releaseDate, String posterPath) {
         this.mMovieName = movieName;
         this.mVoteAverage = voteAverage;
         this.mReleaseDate = releaseDate;
+        this.mPosterPath = "http://image.tmdb.org/t/p/w500" + posterPath;
     }
 
     public String getMovieName() {
@@ -32,5 +34,9 @@ public class Movie {
 
     public String getmReleaseDate() {
         return mReleaseDate;
+    }
+
+    public String getPosterPath() {
+        return mPosterPath;
     }
 }

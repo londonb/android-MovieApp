@@ -34,7 +34,6 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
         ButterKnife.bind(this);
-        Log.v("movies", ""+mMovies);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         getMovies(title);

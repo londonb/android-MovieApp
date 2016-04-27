@@ -55,8 +55,10 @@ public class MovieService {
                     String title = moviesJSON.getString ("original_title");
                     double voteAverage = moviesJSON.getDouble("vote_average");
                     String releaseDate = moviesJSON.getString("release_date");
-                    Movie movie = new Movie(title, voteAverage, releaseDate);
+                    String poster = moviesJSON.getString("poster_path");
+                    Movie movie = new Movie(title, voteAverage, releaseDate, poster);
                     movies.add(movie);
+
                 }//FOR
             }//IF
         } catch (IOException e) {
