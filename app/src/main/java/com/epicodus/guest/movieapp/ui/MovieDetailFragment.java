@@ -31,7 +31,7 @@ public class MovieDetailFragment extends Fragment {
     @Bind(R.id.releaseDateTextView) TextView mReleaseDateTextView;
 //    @Bind(R.id.directorTextView) TextView mDirectorTextView;
 //    @Bind(R.id.castTextView) TextView mCastTextView;
-//    @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
+    @Bind(R.id.descriptionTextView) TextView mDescriptionTextView;
 //    @Bind(R.id.viewWebsiteButton) Button mViewWebsiteButton;
 
     private Movie mMovie;
@@ -63,6 +63,7 @@ public class MovieDetailFragment extends Fragment {
         mMovieNameTextView.setText(mMovie.getMovieName());
         mRatingTextView.setText(Double.toString(mMovie.getVoteAverage()) + "/10");
         mReleaseDateTextView.setText(mMovie.getmReleaseDate());
+        mDescriptionTextView.setText(mMovie.getOverview());
 //        mDirectorTextView.setText(mCast.getDirector());
 //        mCastTextView.setText(mCast.getCast());
         return view;

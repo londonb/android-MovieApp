@@ -76,7 +76,8 @@ public class MovieService {
                     String releaseDate = moviesJSON.getString("release_date");
                     String poster = moviesJSON.getString("poster_path");
                     String id = moviesJSON.getString("id");
-                    Movie movie = new Movie(title, voteAverage, releaseDate, poster);
+                    String overview = moviesJSON.getString("overview");
+                    Movie movie = new Movie(title, voteAverage, releaseDate, poster, overview);
                     movies.add(movie);
 
                 }//FOR
