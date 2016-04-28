@@ -11,24 +11,24 @@ public class Movie {
     public double mVoteAverage; //RATING
     public String mReleaseDate;
     public String mPosterPath;
+//    public String mId;
 
 
-    public Movie() {
-
-    }
+    public Movie() {}
 
     public Movie(String movieName, double voteAverage, String releaseDate, String posterPath) {
         this.mMovieName = movieName;
         this.mVoteAverage = voteAverage;
         this.mReleaseDate = releaseDate;
         this.mPosterPath = "http://image.tmdb.org/t/p/w500" + posterPath;
+//        this.mId = id;
     }
 
     public String getMovieName() {
         return mMovieName;
     }
 
-    public double getmVoteAverage() {
+    public double getVoteAverage() {
         return mVoteAverage;
     }
 
@@ -39,4 +39,9 @@ public class Movie {
     public String getPosterPath() {
         return mPosterPath;
     }
+
+//    public String getId() {
+//        return mId;
+//    }
 }
+
