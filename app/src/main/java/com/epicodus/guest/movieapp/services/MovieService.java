@@ -43,6 +43,25 @@ public class MovieService {
         call.enqueue(callback);
     }
 
+    public static void findCredits(String id, Callback callback) {
+        String MOVIE_API_KEY = Constants.MOVIE_API_KEY;
+
+        OkHttpClient client = new OkHttpClient();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.CREDITS_BASE_URL).newBuilder();
+        urlBuilder.addPathSegment(id);
+        urlBuilder.addPathSegment("credits?");
+        urlBuilder.addQueryParameter(Constants.MOVIE_API_KEY, MOVIE_API_KEY);
+        String url = urlBuilder.build().toString();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Log.v(TAG, "Credits url: " + request);
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+
+    }
+
     public ArrayList<Movie> processResults(Response response) {
         ArrayList<Movie> movies = new ArrayList<>();
         try {
@@ -56,7 +75,8 @@ public class MovieService {
                     double voteAverage = moviesJSON.getDouble("vote_average");
                     String releaseDate = moviesJSON.getString("release_date");
                     String poster = moviesJSON.getString("poster_path");
-                    Movie movie = new Movie(title, voteAverage, releaseDate, poster);
+                    String id = moviesJSON.getString("id");
+                    Movie movie = new Movie(title, voteAverage, releaseDate, poster, id);
                     movies.add(movie);
 
                 }//FOR

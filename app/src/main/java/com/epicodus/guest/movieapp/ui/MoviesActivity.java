@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.epicodus.guest.movieapp.R;
 import com.epicodus.guest.movieapp.adapters.MovieListAdapter;
+import com.epicodus.guest.movieapp.models.Cast;
 import com.epicodus.guest.movieapp.models.Movie;
 import com.epicodus.guest.movieapp.services.MovieService;
 
@@ -25,6 +26,7 @@ import okhttp3.Response;
 
 public class MoviesActivity extends AppCompatActivity {
     public ArrayList<Movie> mMovies = new ArrayList<>();
+//    public ArrayList<Cast> mCast = new ArrayList<>();
     public static final String TAG = MoviesActivity.class.getSimpleName();
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private MovieListAdapter mAdapter;
