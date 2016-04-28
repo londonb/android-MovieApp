@@ -54,18 +54,15 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public int getItemCount() {
+        Log.v("This", "is working");
         return mMovies.size();
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.movieNameTextView)
-        TextView mMovieNameTextView;
-        @Bind(R.id.ratingTextView)
-        TextView mRatingTextView;
-        @Bind(R.id.releaseTextView)
-        TextView mReleaseTextView;
-        @Bind(R.id.posterImageView)
-        ImageView mPosterImageView;
+        @Bind(R.id.movieNameTextView) TextView mMovieNameTextView;
+        @Bind(R.id.ratingTextView) TextView mRatingTextView;
+        @Bind(R.id.releaseTextView) TextView mReleaseTextView;
+        @Bind(R.id.posterImageView) ImageView mPosterImageView;
 //        @Bind(R.id.castTextView) TextView mCastTextView;
 //        @Bind(R.id.directorTextView) TextView mDirectorTextView;
         private Context mContext;
@@ -80,11 +77,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 @Override
                 public void onClick(View v) {
                     int itemPosition = getLayoutPosition();
-                    Movie movie = mMovies.get(itemPosition);
-                    Log.d("movieid", movie.getId());
                     Intent intent = new Intent(mContext, MovieDetailActivity.class);
                     intent.putExtra("position", itemPosition + "");
-                    intent.putExtra("movie", Parcels.wrap(movie));
+                    intent.putExtra("movies", Parcels.wrap(mMovies));
 //                    intent.putExtra("cast", Parcels.wrap(mCast));
                     mContext.startActivity(intent);
                 }
